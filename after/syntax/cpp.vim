@@ -48,6 +48,20 @@ if exists('g:cpp_class_scope_highlight') && g:cpp_class_scope_highlight
     hi def link cCustomClass Function
 endif
 
+syn match    cCustomType    /\<[A-Z]\w\+\>/
+hi def link cCustomType Type
+
+syntax keyword cppType float32 uint32 double64 int32 int64 int16 uint16 vector map set unordered_map std boost string  string_cref char_cptr string_vector string_matrix int_vector bool_vector map_int int_map string_map int_map_int float_vector float_matrix int_matrix  float_cube int_cube int_matrix
+hi def link cppType Type
+
+syntax keyword cppFunction get_data get_attr getdata
+hi def link cppFunction Function
+
+
+syn match    cCustomScope    "::"
+syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
+hi def link cCustomClass Type  
+
 " Clear cppStructure and replace "class" and/or "template" with matches
 " based on user configuration
 let s:needs_cppstructure_match = 0
@@ -519,7 +533,6 @@ syntax keyword cppSTLfunction srand
 syntax keyword cppSTLfunction sscanf
 syntax keyword cppSTLfunction stable_partition
 syntax keyword cppSTLfunction stable_sort
-syntax keyword cppSTLfunction str
 syntax keyword cppSTLfunction strcat
 syntax keyword cppSTLfunction strchr
 syntax keyword cppSTLfunction strcmp
